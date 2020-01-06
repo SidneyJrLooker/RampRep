@@ -1,0 +1,203 @@
+SELECT
+      COUNT(CASE
+      WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                      ARRAY[
+                  ST_GEOGPOINT(
+                    -46.65393170126916,
+                    -23.51650267484576
+                  ),
+                  ST_GEOGPOINT(
+                    -46.658605978791506,
+                    -23.52170363744831
+                  ),
+
+                  ST_GEOGPOINT(
+                    -46.625099276552106,
+                    -23.519558240374757
+                  ),
+                  ST_GEOGPOINT(
+                    -46.65393170126916,
+                    -23.51650267484576
+                  )
+                          ]
+                  )
+              )
+          )
+          THEN 'Downtown'
+          WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                  ST_GEOGPOINT(
+                    -46.47968759362919,
+                    -23.6132405792532
+                  ),
+                  ST_GEOGPOINT(
+                    -46.48459327102888,
+                    -23.61155026640737
+                  ),
+                  
+                  ST_GEOGPOINT(
+                    -46.47940991377638,
+                    -23.61707628917258
+                  ),
+                  ST_GEOGPOINT(
+                    -46.47968759362919,
+                    -23.6132405792532
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'Southeast'
+           WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                 ST_GEOGPOINT(
+                    -46.68706816370481,
+                    -23.50167993142849
+                  ),
+                  ST_GEOGPOINT(
+                    -46.68887308274809,
+                    -23.507075930128636
+                  ),
+                  
+                  ST_GEOGPOINT(
+                    -46.68535580461246,
+                    -23.499404510289875
+                  ),
+                  ST_GEOGPOINT(
+                    -46.68706816370481,
+                    -23.50167993142849
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'Northeast'
+           WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                  ST_GEOGPOINT(
+                    -46.50565065986718,
+                    -23.59497219811174
+                  ),
+                  ST_GEOGPOINT(
+                    -46.50740929893499,
+                    -23.597572679413016
+                  ),
+                  
+                  ST_GEOGPOINT(
+                    -46.50639113947468,
+                    -23.589381163314
+                  ),
+                  ST_GEOGPOINT(
+                    -46.50565065986718,
+                    -23.59497219811174
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'Far East'
+           WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                  ST_GEOGPOINT(
+                    -46.65518126060682,
+                    -23.57390829957141
+                  ),
+                  ST_GEOGPOINT(
+                    -46.67063877241339,
+                    -23.583790128516256
+                  ),
+
+                  ST_GEOGPOINT(
+                    -46.6329668723818,
+                    -23.674481913898234
+                  ),
+                  ST_GEOGPOINT(
+                    -46.63421643171945,
+                    -23.675262058288617
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'Far South'
+           WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                  ST_GEOGPOINT(
+                    -46.672489971432135,
+                    -23.588796055021213
+                  ),
+                  ST_GEOGPOINT(
+                    -46.67114785214354,
+                    -23.583660104451194
+                  ),
+
+                  ST_GEOGPOINT(
+                    -46.67336929096604,
+                    -23.595427282339465
+                  ),
+                  ST_GEOGPOINT(
+                    -46.672489971432135,
+                    -23.588796055021213
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'west'
+           WHEN
+          ST_WITHIN(
+              ST_GEOGPOINT(CAST(local.longitude AS FLOAT64), CAST(local.latitude AS FLOAT64)),
+              ST_MakePolygon(
+                  ST_MakeLine(
+                  ARRAY[
+                  ST_GEOGPOINT(
+                    -46.68804004318965,
+                    -23.50167993142849
+                  ),
+                  ST_GEOGPOINT(
+                    -46.68688304380293,
+                    -23.50037969077785
+                  ),
+                  
+                  ST_GEOGPOINT(
+                    -46.68924332255184,
+                    -23.50551564134787
+                  ),
+                  ST_GEOGPOINT(
+                    -46.68804004318965,
+                    -23.50167993142849
+                  )
+                       ]
+                  )
+              )
+          )
+          THEN 'Northwest'
+          END) AS C
+
+      FROM `lookerdata.sidney_thesis.local` local
+      WHERE local.latitude NOT LIKE '%restrita%' AND local.longitude NOT LIKE '%restrita%'
+      LIMIT 50
